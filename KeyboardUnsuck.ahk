@@ -61,33 +61,20 @@ WM_COMMAND(wParam)
     Suspend,Toggle
     WM_COMMAND(65305)
 
-; ` ` ` ` ` `
-SC029::singleKey("SC029", False)
+; ` ` ` ` ` ` (Backtick)
+SC029::SendInput, {Asc 096}
 
-; ~ ~ ~ ~ ~ ~
-+SC029::singleKey("SC029", True)
+; ~ ~ ~ ~ ~ ~ (Tilde)
++SC029::SendInput, {Asc 126}
 
-; ° ° ° ° ° °
-<^>!SC029::SendRaw, °
+; ° ° ° ° ° ° (Degree Symbol)
+<^>!SC029::SendInput, {U+00B0} ; AltGr + `
 
-; ^ ^ ^ ^ ^ ^
-+SC007::singleKey("SC007", True)
+; ^ ^ ^ ^ ^ ^ (Caret)
++SC007::SendInput, {Asc 094} ; Shift + 6
 
-; ' ' ' ' ' '
-SC028::singleKey("SC028", False)
+; ' ' ' ' ' ' (Apostrophe / Single Quote)
+SC028::SendInput, {Asc 039}
 
-; " " " " " "
-+SC028::singleKey("SC028", True)
-
-singleKey(keyToPress, shiftPress) {
-    keyName := GetKeyName(keyToPress)
-    ; MsgBox, % Format("Name:`t{}`nVK:`t{:X}`nSC:`t{:X}", name, vk, sc)
-    Loop, 2 {
-        if (shiftPress) {
-            Send +{%keyName%}
-        } else {
-            Send {%keyName%}
-        }
-    }
-    Send {BackSpace}
-}
+; " " " " " " (Double Quote)
++SC028::SendInput, {Asc 034} ; Shift + '
